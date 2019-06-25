@@ -1,0 +1,35 @@
+<%= form_for(@user) do |f| %>
+  <div class="container">
+         <% if @user.errors.any? %>
+         <div class="alert alert-warning">
+           <h5>error</h5>
+         <ul>
+            <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+         </ul>
+         </div>
+         <% end %>
+
+    <p id="notice"></p>
+    <h2>User info</h2>
+  
+  <h5>Name</h5>
+  <%= f.text_field :name %>
+  
+  <div class="form-group has-icon">
+    <div class="user-edit-image">
+        <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-square pull-left profile-thumb", fallback: "no-image.jpg"%>
+    </div>
+  <h5>Image</h5>
+  <%= f.attachment_field :profile_image %>
+  
+  <h5>introduction</h5> 
+  <%= f.text_area :introduction %>
+
+    <div class="actions">
+    <%= f.submit "Updeta User" %>
+    </div>
+
+    <% end %>
+  </div>
